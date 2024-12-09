@@ -6,7 +6,14 @@ const bodyParser = require("body-parser");
 
 const app = express();
 const PORT = process.env.PORT || 5000;
-const urlM = "mongodb+srv://abhisheksingh1501:Abhishek1501@userdata.g0d0lxb.mongodb.net/?retryWrites=true&w=majority";
+
+// Use environment variable for MongoDB URI
+const mongoURI = process.env.MONGO_URI;
+
+if (!mongoURI) {
+  console.error("MongoDB URI not provided in environment variables");
+  process.exit(1); // Exit if the URI is not found
+}
 
 // Middleware
 app.use(cors());
@@ -15,7 +22,7 @@ app.use(express.json());
 
 // Connect to MongoDB Atlas
 mongoose
-  .connect(urlM)
+  .connect(mongoURI)
   .then(() => console.log("Connected to MongoDB Atlas"))
   .catch((err) => {
     console.error("Error connecting to MongoDB:", err);
@@ -120,22 +127,6 @@ app.delete("/tasks/:id", async (req, res) => {
   }
 });
 
-// const routineSchema = new mongoose.Schema({
-//   userId: { type: String, required: true },
-//   day: { type: String, required: true },
-//   tasks: [
-//     {
-//       time: String,
-//       text: String,
-//       completed: Boolean,
-//     },
-//   ],
-// });
-
-// // Create the routine model
-// const Routine = mongoose.model('Routine', routineSchema);
-
-// Routes
 
 // Fetch routines by userId
 app.get('/routine', async (req, res) => {
