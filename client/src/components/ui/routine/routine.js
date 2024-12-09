@@ -28,7 +28,7 @@ const RoutineCalendar = () => {
 
   const fetchRoutine = async (userId) => {
     try {
-      const response = await axios.get(`https://project-jarvis-server.vercel.app/routine`, {
+      const response = await axios.get(`https://project-jarvis-two.vercel.app/routine`, {
         params: { userId },
       });
       setTasks(response.data);
@@ -61,7 +61,7 @@ const RoutineCalendar = () => {
     }
 
     try {
-      const response = await axios.post(`https://project-jarvis-server.vercel.app/routine`, {
+      const response = await axios.post(`https://project-jarvis-two.vercel.app/routine`, {
         userId,
         day,
         tasks: [newTask],
@@ -98,7 +98,7 @@ const RoutineCalendar = () => {
     });
 
     try {
-      await axios.patch(`https://project-jarvis-server.vercel.app/routine/${dayRoutine._id}`, {
+      await axios.patch(`https://project-jarvis-two.vercel.app/routine/${dayRoutine._id}`, {
         tasks: updatedTasks.find((t) => t.day === day)?.tasks || [],
       });
       setTasks(updatedTasks);

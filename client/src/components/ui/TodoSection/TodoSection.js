@@ -35,7 +35,7 @@ const TodoList = () => {
     if (userId) {
       const fetchTasks = async () => {
         try {
-          const response = await fetch(`https://project-jarvis-server.vercel.app/tasks?userId=${userId}`);
+          const response = await fetch(`https://project-jarvis-two.vercel.app/tasks?userId=${userId}`);
           if (!response.ok) throw new Error("Failed to fetch tasks");
           const data = await response.json();
           setTasks(data);
@@ -65,7 +65,7 @@ const TodoList = () => {
     };
 
     try {
-      const response = await fetch("https://project-jarvis-server.vercel.app/tasks", {
+      const response = await fetch("https://project-jarvis-two.vercel.app/tasks", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -89,7 +89,7 @@ const TodoList = () => {
 
   const toggleCompleted = async (taskId, currentStatus) => {
     try {
-      const response = await fetch(`https://project-jarvis-server.vercel.app/tasks/${taskId}`, {
+      const response = await fetch(`https://project-jarvis-two.vercel.app/tasks/${taskId}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
@@ -114,7 +114,7 @@ const TodoList = () => {
 
   const removeTask = async (taskId) => {
     try {
-      const response = await fetch(`https://project-jarvis-server.vercel.app/tasks/${taskId}`, {
+      const response = await fetch(`https://project-jarvis-two.vercel.app/tasks/${taskId}`, {
         method: "DELETE",
       });
 
